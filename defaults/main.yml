@@ -1,0 +1,22 @@
+---
+# Enable nginx service on boot.
+nginx_enabled: yes
+
+# State of nginx service.
+nginx_state: started
+
+# The path to application config.
+app_config: proxy-app.j2
+
+# The name of the application, uses to create application configuration, e.g.
+# should be a shorthand, lowercase and not contain any whitespaces.
+app_name: app
+
+# The internal ip address of the web application.
+app_ip: 192.168.1.61
+
+# The port used by application.
+app_port: 5000
+
+# Fully qualified domain name of the application. Non-www version.
+app_fqdn: example.com

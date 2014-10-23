@@ -1,0 +1,87 @@
+---
+- name: Install the latest nginx package
+  apt:
+    name=nginx
+    update_cache=yes
+    state=latest
+  tags:
+    - apt
+    - setup
+
+- name: Ensure the directories for nginx and sites configs are exist
+  file: path=/etc/nginx/{{ item }} state=directory
+  with_items:
+    - conf.d
+    - sites-available
+    - sites-enabled
+  tags:
+    - setup
+    - config
+
+- name: Create nginx config (part 1)
+  template: src=nginx.conf.j2 dest=/etc/nginx/nginx.conf
+  tags:
+    - web
+    - config
+
+- name: Create nginx config (part 2)
+  template:
+    src={{ item }}
+    dest=/etc/nginx/conf.d/{{ item|regex_replace('^nginx.(.*).j2', '\\1') }}
+  with_items:
+    - nginx.expires.conf.j2
+    - nginx.protect-system-files.conf.j2
+    - nginx.x-ua-compatible.conf.j2
+  tags:
+    - web
+    - config
+
+- name: Copy config for default server
+  template:
+    src=no-default.j2
+    dest=/etc/nginx/sites-available/default
+    owner=root group=root mode=0644
+  notify: restart nginx
+  tags:
+    - config
+    - setup
+    - web
+
+- name: Enable default server (drops requests for unknown hosts)
+  file:
+    src=/etc/nginx/sites-available/default
+    dest=/etc/nginx/sites-enabled/default
+    owner=root group=root state=link
+  notify: restart nginx
+  tags:
+    - config
+    - setup
+    - web
+
+- name: Proxy pass any requests to application
+  template:
+    src={{ app_config }}
+    dest=/etc/nginx/sites-available/{{ app_name }}
+  notify: restart nginx
+  tags:
+    - app
+    - web
+    - config
+
+- name: Enable application
+  file:
+    src=/etc/nginx/sites-available/{{ app_name }}
+    dest=/etc/nginx/sites-enabled/{{ app_name }}
+    state=link
+  notify: restart nginx
+  tags:
+    - app
+    - web
+    - config
+
+- name: Configure nginx service
+  service: name=nginx enabled={{ nginx_enabled }} state={{ nginx_state }}
+  tags:
+    - nginx
+    - setup
+    - service
