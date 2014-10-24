@@ -60,7 +60,7 @@
 
 - name: Proxy pass any requests to application
   template:
-    src={{ app_config }}
+    src={{ nginx_app_config }}
     dest=/etc/nginx/sites-available/{{ app_name }}
   notify: restart nginx
   tags:

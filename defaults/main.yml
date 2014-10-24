@@ -5,8 +5,8 @@ nginx_enabled: yes
 # State of nginx service.
 nginx_state: started
 
-# The path to application config.
-app_config: proxy-app.j2
+# The path to nginx application config.
+nginx_app_config: proxy-app.j2
 
 # The name of the application, uses to create application configuration, e.g.
 # should be a shorthand, lowercase and not contain any whitespaces.

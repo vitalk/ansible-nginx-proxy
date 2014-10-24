@@ -8,7 +8,7 @@ Option | Description
 ---|---
 `nginx_enabled` | Enable nginx service on boot.
 `nginx_state` | State of nginx service.
-`app_config` | The path to application config.
+`nginx_app_config` | The path to nginx application config.
 `app_name` | The name of the application, uses to create application configuration, e.g.  should be a shorthand, lowercase and not contain any whitespaces.
 `app_ip` | The internal ip address of the web application.
 `app_port` | The port used by application.
