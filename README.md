@@ -1,6 +1,8 @@
 # Nginx proxy
 
-Ansible recipe to configure a nginx as proxy server.
+Ansible recipe to configure a Nginx as proxy server. This recipe does not
+trying to cover all available Nginx options and just use [the best practices](https://github.com/h5bp/server-configs-nginx)
+to configure Nginx as proxy server.
 
 ## Role Variables
 
