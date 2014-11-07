@@ -22,6 +22,29 @@ Option | Description
 `app_port` | The port used by application.
 `app_fqdn` | Fully qualified domain name of the application. Non-www version.
 
+## Usage example
+
+If [the existing configuration](templates/proxy-app.j2) does not satisfy your
+needs write your own.
+
+```nginx
+upstream backend {
+    server backend1.example.com       weight=5;
+    server backend2.example.com:8080;
+    server unix:/tmp/backend3;
+}
+
+server {
+    location / {
+        proxy_pass http://backend;
+    }
+}
+```
+
+Put it somewhere with your playbooks, for example into
+`roles/nginx-proxy/templates/myapp.j2` and point to it via `nginx_app_config`
+variable.
+
 ## License
 
 Licensed under the [MIT license](http://mit-license.org/vitalk).
