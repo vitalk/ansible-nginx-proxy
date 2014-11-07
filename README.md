@@ -11,7 +11,13 @@ Option | Description
 `nginx_enabled` | Enable nginx service on boot.
 `nginx_state` | State of nginx service.
 `nginx_app_config` | The path to nginx application config.
-`app_name` | The name of the application, uses to create application configuration, e.g.  should be a shorthand, lowercase and not contain any whitespaces.
+`app_name` | The name of the application, uses to create application configuration, e.g. should be a shorthand, lowercase and not contain any whitespaces.
+
+This options are optional and bound to [the application config](templates/proxy-app.j2). Feel
+free to define your own variables based on your configuration.
+
+Option | Description
+---|---
 `app_ip` | The internal ip address of the web application.
 `app_port` | The port used by application.
 `app_fqdn` | Fully qualified domain name of the application. Non-www version.
