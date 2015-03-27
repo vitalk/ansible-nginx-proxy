@@ -59,7 +59,7 @@ $ tree
             └── myapp.j2
 ```
 
-corresponds to this option
+...corresponds to this option
 
 ```ansible
 nginx_app_config: roles/nginx-proxy/templates/myapp.j2
