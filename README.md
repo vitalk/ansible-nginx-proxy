@@ -45,8 +45,9 @@ Put it somewhere with your playbooks, for example into
 `roles/nginx-proxy/templates/myapp.j2` and point to it via `nginx_app_config`
 variable.
 
-Note. Ansible imports paths relative to the playbook you play, so this
-layout...
+### Note about relative import
+
+Ansible imports paths relative to the playbook you play, so this layout...
 
 ```shell
 $ tree
