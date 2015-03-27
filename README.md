@@ -73,4 +73,4 @@ Licensed under the [MIT license](http://mit-license.org/vitalk).
 
 Created by Vital Kudzelka.
 
-Open [a GitHub issue](https://github.com/vitalk/ansible-nginx-proxy) if you have any suggestions or found a bug.
+Open [a GitHub issue](https://github.com/vitalk/ansible-nginx-proxy/issues) if you have any suggestions or found a bug.
